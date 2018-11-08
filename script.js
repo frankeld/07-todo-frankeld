@@ -1,23 +1,21 @@
 var namesHtml = '';
-function addTodo(event) {
-  event.preventDefault();
-  // var input = document.getElementById("reminderInput").value;
-  // console.log(input);
+refreshTodoList();
+function refreshTodoList() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var todos = JSON.parse(this.responseText);
+          for (var i = 0; i < todos.length; i++) {
+            namesHtml += '<li'+ (todos[i]['completed'] ? ' class="completed"' : '') +'><span class="listItemContent" id="'+ todos[i]['id'] +'" onclick="flipCompleted(this);">' + todos[i]['text'] + '</span><button type="button" name="deleteTodo" onclick="deleteTodo(this);">X</button></li>';
+          }
+          document.getElementById("itemList").innerHTML = namesHtml;
+      }
+  };
+  xhttp.open("GET", "https://api.kraigh.net/todos", true);
+  xhttp.setRequestHeader("x-api-key","66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
+  xhttp.send();
 }
-document.getElementById("addForm").addEventListener("submit", addTodo);
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var todos = JSON.parse(this.responseText);
-        for (var i = 0; i < todos.length; i++) {
-          namesHtml += '<li'+ (todos[i]['completed'] ? ' class="completed"' : '') +'><span class="listItemContent" id="'+ todos[i]['id'] +'" onclick="flipCompleted(this);">' + todos[i]['text'] + '</span><button type="button" name="deleteTodo" onclick="deleteTodo(this);">X</button></li>';
-        }
-        document.getElementById("itemList").innerHTML = namesHtml;
-    }
-};
-xhttp.open("GET", "https://api.kraigh.net/todos", true);
-xhttp.setRequestHeader("x-api-key","66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
-xhttp.send();
+
 function flipCompleted(ele) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -33,6 +31,7 @@ function flipCompleted(ele) {
   var data = {completed: (document.getElementById(ele.id).parentElement.classList.contains("completed") ? false : true)};
   xhttp.send(JSON.stringify(data));
 }
+
 function deleteTodo(ele) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -47,19 +46,23 @@ function deleteTodo(ele) {
   xhttp.setRequestHeader("x-api-key", "66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
   xhttp.send();
 }
-// var xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-//   if (this.readyState == 4 && this.status == 200) {
-//     var todo = JSON.parse(this.responseText);
-//     var itemList =document.getElementById("itemList");
-//     itemList.appendChild(document.createTextNode("bar"));
-//   } else if (this.readyState == 4) { //Error
-//     console.log(this.responseText);
-//   }
-// };
-//
-// xhttp.open("POST", "https://api.kraigh.net/todos", true);
-// xhttp.setRequestHeader("Content-type", "application/json");
-// xhttp.setRequestHeader("x-api-key", "66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
-// xhttp.send(JSON.stringify(data));
-// your function
+
+function addTodo(event) {
+  event.preventDefault();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var todo = JSON.parse(this.responseText);
+      var content = '<li><span class="listItemContent" id="'+ todo['id'] +'" onclick="flipCompleted(this);">' + todo['text'] + '</span><button type="button" name="deleteTodo" onclick="deleteTodo(this);">X</button></li>';
+      document.getElementById("itemList").innerHTML += content;
+      document.getElementById("todoInput").value = "";
+    } else if (this.readyState == 4) { //Error
+      console.log(this.responseText);
+    }
+  };
+  var data = {text: document.getElementById("todoInput").value};
+  xhttp.open("POST", "https://api.kraigh.net/todos");
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.setRequestHeader("x-api-key", "66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
+  xhttp.send(JSON.stringify(data));
+}

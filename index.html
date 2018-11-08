@@ -6,23 +6,22 @@
 	<meta content="" name="description">
 	<meta content="David Frankel" name="author">
 	<link href="style.css" rel="stylesheet" type="text/css">
-	<script src="script.js"></script>
 </head>
 <body>
 	<div id="content">
 		<div id="header">
 		  <h1>To Do</h1>
-			<form id="addForm">
-				<input type="text" id="reminderInput" placeholder="Remind me to...">
+			<form onsubmit="addTodo(event);">
+				<input type="text" id="todoInput" placeholder="Remind me to...">
 				<input type="submit" value="Add"></input>
 			</form>
 		</div>
 		<div class="items">
 			<ul id="itemList">
-				<!-- <li>First Items<button type="button" name="deleteTodo" onclick="deleteTodo()">X</button></li>
-				<li class="completed">Second Item</li> -->
 			</ul>
 		</div>
 	</div>
+	<!-- Prevents issues with forms stuff -->
+	<script src="script.js"></script>
 </body>
 </html>
