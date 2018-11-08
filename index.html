@@ -9,11 +9,16 @@
 	<script src="script.js"></script>
 </head>
 <body>
+	<form id="addForm">
+    <input type="submit" value="The Panda says..."/>
+</form>
 	<div id="content">
 		<div id="header">
 		  <h1>To Do</h1>
-		  <input type="text" id="reminderInput" placeholder="Remind me to...">
-			<button type="button" name="addTodo" onclick="addTodo()">Add</button>
+			<form id="addForm">
+				<input type="text" id="reminderInput" placeholder="Remind me to...">
+				<input type="submit" value="Add"></input>
+			</form>
 		</div>
 		<div class="items">
 			<ul id="itemList">

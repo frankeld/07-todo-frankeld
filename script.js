@@ -1,4 +1,10 @@
 var namesHtml = '';
+function addTodo(event) {
+  event.preventDefault();
+  // var input = document.getElementById("reminderInput").value;
+  // console.log(input);
+}
+document.getElementById("addForm").addEventListener("submit", addTodo, true);
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -56,3 +62,4 @@ function deleteTodo(ele) {
 // xhttp.setRequestHeader("Content-type", "application/json");
 // xhttp.setRequestHeader("x-api-key", "66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b");
 // xhttp.send(JSON.stringify(data));
+// your function
