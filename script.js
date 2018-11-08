@@ -4,7 +4,7 @@ function addTodo(event) {
   // var input = document.getElementById("reminderInput").value;
   // console.log(input);
 }
-document.getElementById("addForm").addEventListener("submit", addTodo, true);
+document.getElementById("addForm").addEventListener("submit", addTodo);
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
