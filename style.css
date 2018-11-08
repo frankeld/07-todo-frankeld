@@ -8,5 +8,18 @@
   padding-bottom: 76px;
 }
 .completed {
+  background: #888;
   text-decoration: line-through;
+}
+button {
+  position: relative;
+}
+li {
+  list-style-type: none;
+}
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+ul li:hover {
+  background: #ddd;
 }
