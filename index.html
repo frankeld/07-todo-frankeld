@@ -6,8 +6,21 @@
 	<meta content="" name="description">
 	<meta content="David Frankel" name="author">
 	<link href="style.css" rel="stylesheet" type="text/css">
-	<!-- Api key: 66d24650014ef29878e637f3b1e42641eee0f334d21ecd8a6aa518ba2c1ce37b -->
+	<script src="script.js"></script>
 </head>
 <body>
+	<div id="content">
+		<div id="header">
+		  <h1>To Do</h1>
+		  <input type="text" id="reminderInput" placeholder="Remind me to...">
+			<button type="button" name="addTodo" onclick="addTodo()">Add</button>
+		</div>
+		<div class="items">
+			<ul id="itemList">
+				<!-- <li>First Items<button type="button" name="deleteTodo" onclick="deleteTodo()">X</button></li>
+				<li class="completed">Second Item</li> -->
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
