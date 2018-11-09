@@ -7,19 +7,58 @@
   border-top: 1px solid #fff;
   padding-bottom: 76px;
 }
-.completed {
-  background: #888;
-  text-decoration: line-through;
+#header {
+  border-bottom: 1px solid grey;
 }
-button {
-  position: relative;
+h1 {
+  padding-left: 18px;
 }
-li {
+#todoInput {
+  margin: 0;
+  border: 1px solid grey;
+  margin-left: 18px;
+  border-radius: 0;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+input[type=submit] {
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+.items {
+  overflow-y: auto;
+  height: 442px;
+}
+#itemList {
+  margin-top: 0;
+}
+ul {
+  padding: 5px;
+  border-bottom: 1px solid grey;
+}
+ul li {
   list-style-type: none;
+  padding: 15px 18px 15px 18px;
+  border-radius: 2px;
 }
 ul li:nth-child(odd) {
   background: #f9f9f9;
 }
 ul li:hover {
   background: #ddd;
+}
+.completed {
+  text-decoration: line-through;
+  color: grey;
+}
+button {
+  position: relative;
+  float: right;
+  clear: both;
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+.listItemContent {
+  min-width: 100%;
 }
