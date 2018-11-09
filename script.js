@@ -56,7 +56,7 @@ function addTodo(event) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var todo = JSON.parse(this.responseText);
-      var content = '<li><span class="listItemContent" id="'+ todo['id'] +'" onclick="flipCompleted(this);">' + todo['text'] + '</span><button type="button" name="deleteTodo" onclick="deleteTodo(this);">X</button></li>';
+      var content = '<li onclick="flipCompleted(this);" '+ (todo['completed'] ? ' class="completed"' : '') +'><span class="listItemContent" id="'+ todo['id'] +'">' + todo['text'] + '</span><button type="button" name="deleteTodo" onclick="deleteTodo(event, this);">X</button></li>';
       document.getElementById("itemList").innerHTML += content;
       document.getElementById("todoInput").value = "";
     } else if (this.readyState == 4) { //Error
